@@ -27,8 +27,8 @@
         }
 
         fn transform_value(value: u16, transform: i16) -> u16 { 
-            if by.is_negative() && { 
-                value - by.abs() as u16
+            if by.is_negative() && by.abs() as u16 > value { 
+                panic!("Transforming value {} by {} would result in a negative number", value, by);
             } else { 
                 value + by.abs() as u16
             }
