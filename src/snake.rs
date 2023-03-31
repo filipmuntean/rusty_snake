@@ -7,7 +7,7 @@ pub struct Snake {
    
     body: Vec<Point>,
     direction: Direction,
-    eatingApple: bool,
+    digesting: bool,
 }
 
 impl Snake {
@@ -21,7 +21,7 @@ impl Snake {
             Self {
                 body,
                 direction,
-                eatingApple: false,
+                digesting: false,
             }
     }
 
@@ -45,19 +45,17 @@ impl Snake {
         self.body.insert(0, self.body.first().unwrap().transform(self.direction, 1));
         if !self.digesting {
             self.body.remove(self.body.len() - 1);
-    } else { 
-        self.digesting = false;
+        } else { 
+            self.digesting = false;
+        }
     }
-
+    
     pub fn set_direction(&mut self, direction: Direction) { 
         if self.direction.opposite() != direction { 
             self.direction = direction;
         }
     }
-
     pub fn grow(&mut self) { 
         self.digesting = true;
     }
-
-
 }
